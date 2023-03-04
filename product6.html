@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product 1 Details</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		header {
+			background-color: #333;
+			color: #fff;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px;
+		}
+
+		nav ul {
+			display: flex;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		nav li {
+			margin-right: 20px;
+		}
+
+		nav a {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		nav a:hover {
+			text-decoration: underline;
+		}
+
+		.user a {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		.user a:hover {
+			text-decoration: underline;
+		}
+
+		main {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+
+		.product-details {
+			background-color: #fff;
+			border: 1px solid #ddd;
+			box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+			padding: 20px;
+		}
+
+		.product-details h1 {
+			font-size: 24px;
+			margin-top: 0;
+		}
+
+		.product-details img {
+			display: block;
+			margin: 0 auto 20px;
+			max-width: 100%;
+		}
+
+		.product-details p {
+			font-size: 18px;
+			margin: 0 0 10px;
+		}
+
+		.product-details h2 {
+			font-size: 20px;
+			margin: 20px 0 10px;
+		}
+
+		.product-details select {
+			font-size: 18px;
+			margin-bottom: 10px;
+			padding: 5px;
+		}
+
+		.product-details button {
+			background-color: #333;
+			border: none;
+			color: #fff;
+			cursor: pointer;
+			font-size: 18px;
+			margin-bottom: 10px;
+			padding: 10px 20px;
+		}
+
+		.product-details button:disabled {
+			background-color: #999;
+			cursor: not-allowed;
+		}
+
+		.product-details #payment-status {
+			font-size: 16px;
+			margin-top: 10px;
+		}
+
+		footer {
+			background-color: #333;
+			color: #fff;
+			padding: 10px;
+			text-align: center;
+		}
+
+		footer p {
+			margin: 0;
+		}
+		
+		
+		
+	
+		
+		
+	</style>
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="productlist.html">Home</a></li>
+				<!--   <li><a href="#product1">Product 1</a></li>
+				<li><a href="#product2">Product 2</a></li>
+				<li><a href="#product3">Product 3</a></li>
+				<li><a href="#product4">Product 4</a></li> -->
+			</ul>
+		</nav>
+		<div class="user">
+			<a href="#">Login</a>
+		</div>
+	</header>
+	
+	 
+	
+	<main>
+	
+		
+	
+		<section class="product-details">
+			<h1>Marshall y09 Speaker</h1>
+			<img src="product6.jpg" alt="Product 1"  width="500" height="400">
+			<p>Price: ₹160000</p>
+			
+			<h2>EMI Options</h2>
+			<p>Choose a tenure:</p>
+			<select>
+			    <option value="3">3 months</option>
+				<option value="6">6 months</option>
+				<option value="12">12 months</option>
+				<option value="18">18 months</option>
+			</select>
+			<p>EMI per month:</p>
+			<p id="emi-amount"></p>
+			<button id="pay-now">Pay Now</button>
+			<p id="payment-status"></p>
+			
+			
+		</section>
+	</main>
+	
+	<footer>
+		<p>&copy; 2023 My Store</p>
+	</footer>
+	
+	<script>
+		// Calculate EMI amount based on selected tenure
+		function calculateEMI() {
+  let price = 160000; // Price of the product
+  let tenure = document.querySelector("select").value;
+  let emi = price / tenure;
+  if (emi < 6000) {
+    document.querySelector("#emi-amount").textContent = "Cannot Applicable";
+  } else {
+    document.querySelector("#emi-amount").textContent = `₹${emi.toFixed(2)} per month`;
+  }
+}
+
+		
+		document.querySelector("select").addEventListener("change", calculateEMI);
+		
+		// Disable Pay Now button after payment
+		document.querySelector("#pay-now").addEventListener("click", function() {
+			document.querySelector("#pay-now").disabled = true;
+			document.querySelector("#payment-status").textContent = "Payment successful. Pay Now button is disabled for the rest of the month.";
+		});
+		
+	</script>
+</body>
+</html>
